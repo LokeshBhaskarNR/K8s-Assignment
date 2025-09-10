@@ -2,7 +2,7 @@
 
 ---
 
-# Commands for `flask-app`
+## Commands for `flask-app`
 
 ### 1. Build Docker Image
 
