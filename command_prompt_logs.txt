@@ -1,0 +1,132 @@
+Microsoft Windows [Version 10.0.26100.6584]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 6E8E-DD85
+
+ Directory of C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app
+
+10-09-2025  22:06    <DIR>          .
+10-09-2025  22:06    <DIR>          ..
+10-09-2025  22:07               362 app.py
+10-09-2025  22:07               145 Dockerfile
+10-09-2025  22:06    <DIR>          k8s
+10-09-2025  22:07                 7 requirements.txt
+               3 File(s)            514 bytes
+               3 Dir(s)  232,184,258,560 bytes free
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>docker build -t lokeshbnr/flask-app:1.0 .
+[+] Building 14.3s (11/11) FINISHED                                                                             docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                            0.1s
+ => => transferring dockerfile: 184B                                                                                            0.0s
+ => [internal] load metadata for docker.io/library/python:3.9-slim                                                              2.9s
+ => [auth] library/python:pull token for registry-1.docker.io                                                                   0.0s
+ => [internal] load .dockerignore                                                                                               0.1s
+ => => transferring context: 2B                                                                                                 0.0s
+ => [1/5] FROM docker.io/library/python:3.9-slim@sha256:71b97a8eed69cddd132431327ff7c204fd6ea3d38e0c5d11d52f9661482bc8a3        0.1s
+ => => resolve docker.io/library/python:3.9-slim@sha256:71b97a8eed69cddd132431327ff7c204fd6ea3d38e0c5d11d52f9661482bc8a3        0.1s
+ => [internal] load build context                                                                                               0.1s
+ => => transferring context: 449B                                                                                               0.0s
+ => CACHED [2/5] WORKDIR /app                                                                                                   0.0s
+ => [3/5] COPY requirements.txt .                                                                                               0.1s
+ => [4/5] RUN pip install -r requirements.txt                                                                                   7.7s
+ => [5/5] COPY app.py .                                                                                                         0.1s
+ => exporting to image                                                                                                          2.2s
+ => => exporting layers                                                                                                         1.2s
+ => => exporting manifest sha256:31570e8db9721c649732827b30321cc794a70fd34f436c94ea936136b1087690                               0.0s
+ => => exporting config sha256:dd121faec642e5dc1cd766792f407973547e4cc0b8adfb36949a67668acf5a3c                                 0.0s
+ => => exporting attestation manifest sha256:79750dce48d5cb64303a60d5ea41513586a2fda67a2b4a2cbda9d891513b0bfb                   0.1s
+ => => exporting manifest list sha256:7b26c05621bd16b3db5f81e0b5f25e3a140f6f8c28ef619b4a5b86095a46d12d                          0.0s
+ => => naming to docker.io/lokeshbnr/flask-app:1.0                                                                              0.0s
+ => => unpacking to docker.io/lokeshbnr/flask-app:1.0                                                                           0.8s
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>docker push lokeshbnr/flask-app:1.0
+The push refers to repository [docker.io/lokeshbnr/flask-app]
+e2ce4bd65ac7: Pushed
+04249baa369d: Pushed
+1d454ace0e38: Layer already exists
+25526d06f39f: Layer already exists
+7fcdf9369fa9: Layer already exists
+ce1261c6d567: Layer already exists
+ba92f26c9e55: Pushed
+41dc2499d8fe: Layer already exists
+00c8084d1538: Pushed
+1.0: digest: sha256:7b26c05621bd16b3db5f81e0b5f25e3a140f6f8c28ef619b4a5b86095a46d12d size: 856
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl apply -f k8s/namespace.yaml
+error: error validating "k8s/namespace.yaml": error validating data: failed to download openapi: Get "https://127.0.0.1:61650/openapi/v2?timeout=32s": dial tcp 127.0.0.1:61650: connectex: No connection could be made because the target machine actively refused it.; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl apply -f k8s/configmap.yaml
+error: error validating "k8s/configmap.yaml": error validating data: failed to download openapi: Get "https://127.0.0.1:61650/openapi/v2?timeout=32s": dial tcp 127.0.0.1:61650: connectex: No connection could be made because the target machine actively refused it.; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl apply -f k8s/secret.yaml
+error: error validating "k8s/secret.yaml": error validating data: failed to download openapi: Get "https://127.0.0.1:61650/openapi/v2?timeout=32s": dial tcp 127.0.0.1:61650: connectex: No connection could be made because the target machine actively refused it.; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl apply -f k8s/deployment.yaml
+error: error validating "k8s/deployment.yaml": error validating data: failed to download openapi: Get "https://127.0.0.1:61650/openapi/v2?timeout=32s": dial tcp 127.0.0.1:61650: connectex: No connection could be made because the target machine actively refused it.; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl apply -f k8s/service.yaml
+error: error validating "k8s/service.yaml": error validating data: failed to download openapi: Get "https://127.0.0.1:61650/openapi/v2?timeout=32s": dial tcp 127.0.0.1:61650: connectex: No connection could be made because the target machine actively refused it.; if you choose to ignore these errors, turn validation off with --validate=false
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>minikube status
+minikube
+type: Control Plane
+host: Stopped
+kubelet: Stopped
+apiserver: Stopped
+kubeconfig: Stopped
+
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>minikube start
+* minikube v1.36.0 on Microsoft Windows 11 Pro 10.0.26100.6584 Build 26100.6584
+* Using the docker driver based on existing profile
+* Starting "minikube" primary control-plane node in "minikube" cluster
+* Pulling base image v0.0.47 ...
+* Restarting existing docker container for "minikube" ...
+! Failing to connect to https://registry.k8s.io/ from inside the minikube container
+* To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+* Preparing Kubernetes v1.33.1 on Docker 28.1.1 ...
+* Verifying Kubernetes components...
+  - Using image gcr.io/k8s-minikube/storage-provisioner:v5
+* Enabled addons: default-storageclass, storage-provisioner
+* Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl apply -f k8s/namespace.yaml
+namespace/flask-namespace unchanged
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl apply -f k8s/configmap.yaml
+configmap/flask-config unchanged
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl apply -f k8s/secret.yaml
+secret/flask-secret configured
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl apply -f k8s/deployment.yaml
+deployment.apps/flask-deployment unchanged
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl apply -f k8s/service.yaml
+service/flask-service unchanged
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl get pods -n flask-namespace
+NAME                                READY   STATUS    RESTARTS       AGE
+flask-deployment-77674db46c-dnqv6   1/1     Running   1 (103s ago)   26m
+
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>
+C:\Users\lokes\Desktop\ASSIGNMENTS\assignment_12\flask-app>kubectl port-forward svc/flask-service 8080:80 -n flask-namespace
+Forwarding from 127.0.0.1:8080 -> 5000
+Forwarding from [::1]:8080 -> 5000
+Handling connection for 8080
+Handling connection for 8080
